@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo } from "react";
 import { Search } from "./components/Search";
 import "./App.css";
 
-function App() {
+function CountriesScreen() {
   const [searchText, setSearchText] = useState("");
   const { data, loading, error } = useCountries();
 
@@ -32,7 +32,7 @@ function App() {
   );
 }
 
-export default App;
+export default CountriesScreen;
 
 function useCountries() {
   const [data, setData] = useState([]);
