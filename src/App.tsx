@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { Search } from "./components/Search";
 import "./App.css";
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 function CountriesScreen() {
   const [searchText, setSearchText] = useState("");
@@ -17,18 +18,32 @@ function CountriesScreen() {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <>
+    <div className="flex flex-col gap-2">
       <Search text={searchText} onText={setSearchText} />
-      <ul className="countryList">
-        {filteredCountries.map((country) => (
-          <li className="country" key={country.name}>
-            <div>{country.name}</div>
-            <img className="flag" src={country.flags.png} alt={country.name} />
-          </li>
-        ))}
-      </ul>
+      <div style={{ display: "flex", alignItems: "start" }}>
+        <ul className="countryList">
+          {filteredCountries.map((country) => (
+            <li className="country" key={country.name}>
+              <NavLink
+                to={`/country/${country.name}`}
+                className={({ isActive }) =>
+                  isActive ? "text-secondary-700" : "text-default-class"
+                }
+              >
+                <div>{country.name}</div>
+                <img
+                  className="flag"
+                  src={country.flags.png}
+                  alt={country.name}
+                />
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+        <Outlet />
+      </div>
       <div>{filteredCountries.length} countries found</div>
-    </>
+    </div>
   );
 }
 

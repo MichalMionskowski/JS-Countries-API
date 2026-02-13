@@ -1,3 +1,6 @@
+import { useParams } from "react-router-dom";
+
 export function CountryDetailsPage() {
-  return <>DETAILS PAGE</>;
+  const params = useParams();
+  return <>DETAILS PAGE {params.name}</>;
 }

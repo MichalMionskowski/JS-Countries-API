@@ -7,8 +7,12 @@ import { CountryDetailsPage } from "./components/CountryDetailsPage.tsx";
 import { ErrorScreen } from "./components/ErrorScreen.tsx";
 
 const router = createBrowserRouter([
-  { path: "/", element: <CountriesScreen />, errorElement: <ErrorScreen /> },
-  { path: "/country", element: <CountryDetailsPage /> },
+  {
+    path: "/",
+    element: <CountriesScreen />,
+    errorElement: <ErrorScreen />,
+    children: [{ path: "/country/:name", element: <CountryDetailsPage /> }],
+  },
 ]);
 
 createRoot(document.getElementById("root")!).render(

@@ -61,3 +61,8 @@ ul.countryList {
   background-color: antiquewhite;
   gap: 10px;
 }
+
+.text-secondary-700 {
+  color: #374151; /* or whatever color you want */
+  font-weight: bold;
+}
