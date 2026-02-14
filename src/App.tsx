@@ -20,24 +20,28 @@ function CountriesScreen() {
   return (
     <div className="flex flex-col gap-2">
       <Search text={searchText} onText={setSearchText} />
-      <div style={{ display: "flex", alignItems: "start" }}>
+      <div
+        className="flex gap-4"
+        style={{ display: "flex", alignItems: "start" }}
+      >
         <ul className="countryList">
           {filteredCountries.map((country) => (
-            <li className="country" key={country.name}>
-              <NavLink
-                to={`/country/${country.name}`}
-                className={({ isActive }) =>
-                  isActive ? "text-secondary-700" : "text-default-class"
-                }
-              >
+            <NavLink
+              to={`/country/${country.name}`}
+              style={({ isActive }) => ({
+                backgroundColor: isActive ? "#90EE90" : "transparent",
+                textDecoration: "none",
+              })}
+            >
+              <li className="country" key={country.name}>
                 <div>{country.name}</div>
                 <img
                   className="flag"
                   src={country.flags.png}
                   alt={country.name}
                 />
-              </NavLink>
-            </li>
+              </li>
+            </NavLink>
           ))}
         </ul>
         <Outlet />
